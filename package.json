@@ -1,6 +1,6 @@
 {
-  "name": "@evmexplorer-uniswap",
-  "version": "0.0.2",
+  "name": "@evmexplorer/uniswap",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -13,7 +13,10 @@
     "local-release": "changeset version && changeset publish",
     "prepublishOnly": "npm run ci"
   },
-  "keywords": [],
+  "keywords": [
+    "evmexplorer",
+    "uniswap"
+  ],
   "author": "Pavel Fedotov",
   "license": "MIT",
   "devDependencies": {
