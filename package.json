@@ -1,7 +1,7 @@
 {
   "name": "@evmexplorer/uniswap",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "EVMExplorer uniswap sdk",
   "main": "dist/index.js",
   "homepage": "https://github.com/Pfed-prog/EVMExplorer-Uniswap",
   "scripts": {
@@ -16,7 +16,12 @@
   },
   "keywords": [
     "evmexplorer",
-    "uniswap"
+    "blockscout",
+    "uniswap",
+    "ethereum",
+    "web3",
+    "swap",
+    "ethers"
   ],
   "author": "Pavel Fedotov",
   "license": "MIT",
@@ -46,5 +51,11 @@
   "types": "./dist/index.d.ts",
   "bugs": {
     "url": "https://github.com/Pfed-prog/EVMExplorer-Uniswap/issues"
+  },
+  "dependencies": {
+    "@evmexplorer/blockscout": "^0.0.6",
+    "ethers": "^6.13.4",
+    "@uniswap/sdk-core": "^5.4.1",
+    "@uniswap/v3-sdk": "^3.18.1"
   }
 }
