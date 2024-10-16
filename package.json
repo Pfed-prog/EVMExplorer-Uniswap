@@ -1,6 +1,6 @@
 {
   "name": "@evmexplorer/uniswap",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "EVMExplorer uniswap sdk",
   "main": "dist/index.js",
   "homepage": "https://github.com/Pfed-prog/EVMExplorer-Uniswap",
@@ -21,6 +21,8 @@
     "ethereum",
     "web3",
     "swap",
+    "dex",
+    "erc20",
     "ethers"
   ],
   "author": "Pavel Fedotov",

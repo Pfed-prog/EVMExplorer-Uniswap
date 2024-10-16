@@ -22,32 +22,32 @@ export async function getQuoteUniswap(
       Number(addressInfo.token.decimals),
     );
 
-    const WETH = WETH9[chainId];
+    const WETH: Token | undefined = WETH9[chainId];
 
     if (WETH instanceof Token) {
-      const poolAddresses = [
+      const poolAddresses: string[] = [
         Pool.getAddress(WETH, TOKEN, 100),
         Pool.getAddress(WETH, TOKEN, 500),
         Pool.getAddress(WETH, TOKEN, 3000),
         Pool.getAddress(WETH, TOKEN, 10000),
       ];
 
-      const poolFees = ['0.01%', '0.05%', '0.3%', '1%'];
+      const poolFees: string[] = ['0.01%', '0.05%', '0.3%', '1%'];
 
-      const poolContracts = poolAddresses.map(
+      const poolContracts: Contract[] = poolAddresses.map(
         (address) => new Contract(address, IUniswapV3PoolABI.abi, provider),
       );
 
-      let maxLiquidity = 0;
-      let maxLiquidityIndex = -1;
+      let maxLiquidity: number = 0;
+      let maxLiquidityIndex: number = -1;
       let maxSlot0: { 0: bigint } | undefined;
 
       for (let i = 0; i < poolContracts.length; i++) {
-        let slot0: { 0: bigint } | undefined;
+        let slot0: { 0: bigint };
         let liquidity = 0;
 
         try {
-          slot0 = (await poolContracts[i]?.slot0!()) as any;
+          slot0 = await poolContracts[i]?.slot0!();
           liquidity = Number(await poolContracts[i]?.liquidity!());
         } catch (error) {
           continue;
@@ -58,22 +58,26 @@ export async function getQuoteUniswap(
           maxSlot0 = slot0;
         }
       }
+
       if (maxSlot0) {
-        const poolContract = poolContracts[maxLiquidityIndex];
-        const numerator = Number(maxSlot0[0]);
-        const denominator = 2 ** 96;
+        const poolContract = poolContracts[maxLiquidityIndex] as Contract;
+        const numerator: number = Number(maxSlot0[0]);
+        const denominator: number = 2 ** 96;
 
-        const price = (numerator / denominator) ** 2;
+        const price: number = (numerator / denominator) ** 2;
 
-        const token0isWETH = (await poolContract?.token0!()) === WETH.address;
-        const decimalScalar = 10 ** (18 - Number(addressInfo.token.decimals));
-        const pricePerWETH = token0isWETH ? 1 / price : price;
-        const adjDecimalsPrice = pricePerWETH / decimalScalar;
-        const adjPrice = adjDecimalsPrice * Number(addressInfo?.exchange_rate);
+        const token0isWETH: boolean =
+          (await poolContract?.token0!()) === WETH.address;
+        const decimalScalar: number =
+          10 ** (18 - Number(addressInfo.token.decimals));
+        const pricePerWETH: number = token0isWETH ? 1 / price : price;
+        const adjDecimalsPrice: number = pricePerWETH / decimalScalar;
+        const adjPrice: number =
+          adjDecimalsPrice * Number(addressInfo?.exchange_rate);
 
         return {
-          address: poolAddresses[maxLiquidityIndex],
-          fee: poolFees[maxLiquidityIndex],
+          address: poolAddresses[maxLiquidityIndex] as string,
+          fee: poolFees[maxLiquidityIndex] as string,
           price: adjPrice,
           poolContract: poolContract,
         };
