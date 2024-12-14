@@ -3,7 +3,6 @@ import type {
   FallbackProvider,
   AlchemyProvider,
 } from 'ethers';
-import type { PublicClient } from 'viem';
 import { Contract } from 'ethers';
 import { Token, WETH9 } from '@uniswap/sdk-core';
 import { Pool } from '@uniswap/v3-sdk';
@@ -118,7 +117,7 @@ export async function getQuoteUniswapUSD(
 
 export async function getQuoteUniswapViemUSD(
   addressInfo: ContractData,
-  publicClient: PublicClient,
+  publicClient: any,
   exchangeRate: string,
 ) {
   if (addressInfo && addressInfo.address && addressInfo.decimals) {
