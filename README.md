@@ -1,6 +1,6 @@
 # EVMExplorer-Uniswap
 
-[EVM Explorer](evmexplorer.com) typescript Uniswap v3 sdk.
+[EVM Explorer](evmexplorer.com) TypeScript Uniswap v3 sdk.
 
 ## 📚 Install
 
@@ -43,3 +43,5 @@ const result = await getQuoteUniswapUSD(tokenData, provider, exchangeRateWETH);
 ## More information
 
 [EVM Explorer - Tracking Smart Contract Transaction Data](https://dspyt.com/evmexplorer)
+
+[Explanation of Slot0 Data](https://stackoverflow.com/a/79280489/13943679)

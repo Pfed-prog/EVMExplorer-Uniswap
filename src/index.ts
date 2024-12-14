@@ -1,2 +1,6 @@
-export type { ContractData } from './data';
-export { getQuoteUniswapUSD } from './data';
+export type { ContractData, Slot0RawType, Slot0ReturnType } from './data';
+export {
+  getQuoteUniswapUSD,
+  getQuoteUniswapViemUSD,
+  convertSlot0,
+} from './data';
