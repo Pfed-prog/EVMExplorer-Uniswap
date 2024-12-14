@@ -1,25 +1,31 @@
-import type { AddressInfo } from '@evmexplorer/blockscout';
-import type { JsonRpcProvider, FallbackProvider } from 'ethers';
+import type {
+  JsonRpcProvider,
+  FallbackProvider,
+  AlchemyProvider,
+} from 'ethers';
 import { Contract } from 'ethers';
 import { Token, WETH9 } from '@uniswap/sdk-core';
 import { Pool } from '@uniswap/v3-sdk';
 import IUniswapV3PoolABI from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json';
 
-export async function getQuoteUniswap(
-  addressInfo: AddressInfo,
-  chainId: number,
-  provider: JsonRpcProvider | FallbackProvider,
+export type ContractData = {
+  address: string;
+  decimals: number;
+  chainId: number;
+};
+
+export async function getQuoteUniswapUSD(
+  addressInfo: ContractData,
+  provider: JsonRpcProvider | AlchemyProvider | FallbackProvider,
+  exchangeRate: string,
 ) {
-  if (
-    addressInfo &&
-    addressInfo.token &&
-    addressInfo.token.address &&
-    addressInfo.token.decimals
-  ) {
-    const TOKEN = new Token(
+  if (addressInfo && addressInfo.address && addressInfo.decimals) {
+    const chainId: number = addressInfo.chainId;
+
+    const TOKEN: Token = new Token(
       chainId,
-      addressInfo.token.address,
-      Number(addressInfo.token.decimals),
+      addressInfo.address,
+      Number(addressInfo.decimals),
     );
 
     const WETH: Token | undefined = WETH9[chainId];
@@ -68,12 +74,10 @@ export async function getQuoteUniswap(
 
         const token0isWETH: boolean =
           (await poolContract?.token0!()) === WETH.address;
-        const decimalScalar: number =
-          10 ** (18 - Number(addressInfo.token.decimals));
+        const decimalScalar: number = 10 ** (18 - Number(addressInfo.decimals));
         const pricePerWETH: number = token0isWETH ? 1 / price : price;
         const adjDecimalsPrice: number = pricePerWETH / decimalScalar;
-        const adjPrice: number =
-          adjDecimalsPrice * Number(addressInfo?.exchange_rate);
+        const adjPrice: number = adjDecimalsPrice * Number(exchangeRate);
 
         return {
           address: poolAddresses[maxLiquidityIndex] as string,

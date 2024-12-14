@@ -1,18 +1,20 @@
 {
   "name": "@evmexplorer/uniswap",
-  "version": "0.0.3",
-  "description": "EVMExplorer uniswap sdk",
+  "version": "0.0.4",
+  "description": "EVM Explorer Uniswap v3 sdk",
   "main": "dist/index.js",
   "homepage": "https://github.com/Pfed-prog/EVMExplorer-Uniswap",
   "scripts": {
     "build": "tsup",
-    "ci": "npm run build && npm run check-format && npm run check-exports && npm run lint",
+    "ci": "npm run build && npm run check-format && npm run check-exports && npm run lint && npm run test",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
     "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
     "lint": "tsc",
     "local-release": "changeset version && changeset publish",
-    "prepublishOnly": "npm run ci"
+    "prepublishOnly": "npm run ci",
+    "test": "vitest run",
+    "dev": "vitest"
   },
   "keywords": [
     "evmexplorer",
@@ -31,9 +33,11 @@
     "@arethetypeswrong/cli": "^0.16.4",
     "@changesets/cli": "^2.27.9",
     "@types/node": "^22.7.5",
+    "dotenv": "^16.4.7",
     "prettier": "^3.3.3",
     "tsup": "^8.3.0",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
   },
   "repository": {
     "type": "git",
@@ -55,9 +59,9 @@
     "url": "https://github.com/Pfed-prog/EVMExplorer-Uniswap/issues"
   },
   "dependencies": {
-    "@evmexplorer/blockscout": "^0.0.6",
-    "ethers": "^6.13.4",
+    "@evmexplorer/blockscout": "^0.0.12",
     "@uniswap/sdk-core": "^5.4.1",
-    "@uniswap/v3-sdk": "^3.18.1"
+    "@uniswap/v3-sdk": "^3.18.1",
+    "ethers": "^6.13.4"
   }
 }

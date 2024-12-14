@@ -1,2 +1,2 @@
-export type { UniswapTokenProps } from './types';
-export { getQuoteUniswap } from './data';
+export type { ContractData } from './data';
+export { getQuoteUniswapUSD } from './data';
