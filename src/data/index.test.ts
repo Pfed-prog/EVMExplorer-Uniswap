@@ -5,7 +5,7 @@ import { test, expect } from 'vitest';
 import { getQuoteUniswapUSD, getQuoteUniswapViemUSD } from '.';
 import { AlchemyProvider } from 'ethers';
 import { createPublicClient, http } from 'viem';
-import { mainnet, optimism } from 'viem/chains';
+import { arbitrum, mainnet, optimism, polygon } from 'viem/chains';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -30,7 +30,7 @@ test('Get Quote on Mainnet', async () => {
   );
 
   expect(result.fee).toBe('0.3%');
-}, 6000);
+}, 10000);
 
 test('Get Viem Quote on Mainnet', async () => {
   const publicClient: PublicClient = createPublicClient({
@@ -99,4 +99,50 @@ test('Get Quote Viem on Optimism', async () => {
   );
 
   expect(result.fee).toBe('1%');
+}, 1000000);
+
+test('Get Quote Viem on Polygon', async () => {
+  const publicClient = createPublicClient({
+    chain: polygon,
+    transport: http(),
+  });
+
+  const tokenData = {
+    address: '0xd6df932a45c0f255f85145f286ea0b292b21c90b',
+    decimals: '18',
+    chainId: polygon.id,
+  };
+
+  const exchangeRateWETH = '3920.84';
+
+  const result = await getQuoteUniswapViemUSD(
+    tokenData,
+    publicClient,
+    exchangeRateWETH,
+  );
+
+  expect(result.fee).toBe('0.3%');
+}, 1000000);
+
+test('Get Quote Viem on Arbitrum', async () => {
+  const publicClient = createPublicClient({
+    chain: arbitrum,
+    transport: http(),
+  });
+
+  const tokenData = {
+    address: '0x912ce59144191c1204e64559fe8253a0e49e6548',
+    decimals: '18',
+    chainId: arbitrum.id,
+  };
+
+  const exchangeRateWETH = '3920.84';
+
+  const result = await getQuoteUniswapViemUSD(
+    tokenData,
+    publicClient,
+    exchangeRateWETH,
+  );
+
+  expect(result.fee).toBe('0.05%');
 }, 1000000);
