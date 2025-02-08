@@ -1,6 +1,6 @@
 # EVMExplorer-Uniswap
 
-[EVM Explorer](evmexplorer.com) TypeScript Uniswap v3 sdk.
+[EVM Explorer](evmexplorer.com) TypeScript Uniswap v3 SDK.
 
 ## 📚 Install
 
