@@ -60,8 +60,8 @@
     "url": "https://github.com/Pfed-prog/EVMExplorer-Uniswap/issues"
   },
   "dependencies": {
-    "@evmexplorer/blockscout": "0.0.21",
-    "@uniswap/sdk-core": "^5.4.1",
+    "@evmexplorer/blockscout": "^0.0.21",
+    "@uniswap/sdk-core": "^7.5.0",
     "@uniswap/v3-sdk": "^3.18.1",
     "ethers": "^6.13.4"
   }

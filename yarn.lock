@@ -684,7 +684,11 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
+<<<<<<< HEAD
 "@evmexplorer/blockscout@0.0.21":
+=======
+"@evmexplorer/blockscout@^0.0.21":
+>>>>>>> bfdfc802d95cbada79b43d87b1b8822b70034ee9
   version "0.0.21"
   resolved "https://registry.yarnpkg.com/@evmexplorer/blockscout/-/blockscout-0.0.21.tgz#402dd27439bf54ab5b2831242b59f8ce8c74114f"
   integrity sha512-pgKTStZMyeSqLSnF9gdtrWbXx1skELybLAw9MLICc7Z8n5sCvIzJKln55AJEZ1oX/VkQA7FnG5IBQk7Lht+dcg==
@@ -971,10 +975,10 @@
   resolved "https://registry.yarnpkg.com/@uniswap/lib/-/lib-4.0.1-alpha.tgz#2881008e55f075344675b3bca93f020b028fbd02"
   integrity sha512-f6UIliwBbRsgVLxIaBANF6w09tYqc6Y/qXdsrbEmXHyFA7ILiKrIwRFXe1yOg8M3cksgVsO9N7yuL2DdCGQKBA==
 
-"@uniswap/sdk-core@^5.4.1":
-  version "5.9.0"
-  resolved "https://registry.yarnpkg.com/@uniswap/sdk-core/-/sdk-core-5.9.0.tgz#8f1edf4d0e94b314f4394fa5abe0bf5fc9c5a79a"
-  integrity sha512-OME7WR6+5QwQs45A2079r+/FS0zU944+JCQwUX9GyIriCxqw2pGu4F9IEqmlwD+zSIMml0+MJnJJ47pFgSyWDw==
+"@uniswap/sdk-core@^6.0.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@uniswap/sdk-core/-/sdk-core-6.1.0.tgz#0c0449fa1045c1429f8f341e162f6b379c0fee46"
+  integrity sha512-pJVv8rJZwemcp9xINFG7hjxM4H+1FNiDqjpxBabwpCBsBFKfJPwe65Wa8pk8p1yT3QOgA0yFEQuavNsmTdtJ7w==
   dependencies:
     "@ethersproject/address" "^5.0.2"
     "@ethersproject/bytes" "^5.7.0"
@@ -986,10 +990,10 @@
     tiny-invariant "^1.1.0"
     toformat "^2.0.0"
 
-"@uniswap/sdk-core@^6.0.0":
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/@uniswap/sdk-core/-/sdk-core-6.1.0.tgz#0c0449fa1045c1429f8f341e162f6b379c0fee46"
-  integrity sha512-pJVv8rJZwemcp9xINFG7hjxM4H+1FNiDqjpxBabwpCBsBFKfJPwe65Wa8pk8p1yT3QOgA0yFEQuavNsmTdtJ7w==
+"@uniswap/sdk-core@^7.5.0":
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/@uniswap/sdk-core/-/sdk-core-7.5.0.tgz#54165c9268df0e56a322a581876fed4774e1ea70"
+  integrity sha512-4eMbQTu+pEO6CGFG+G9M4ACFPephhfNPpRH40+GGgceHzs73OwQ+5v6Fw5e2JGxr/DEJrS/KcJ2Xjmg/QQ3D6Q==
   dependencies:
     "@ethersproject/address" "^5.0.2"
     "@ethersproject/bytes" "^5.7.0"
