@@ -24,6 +24,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Install dependencies
         run: npm install
-
+      - env:
+          API: ${{ secrets.API }}
       - name: Run CI
         run: npm run ci
