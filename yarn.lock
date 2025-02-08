@@ -684,10 +684,10 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
-"@evmexplorer/blockscout@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@evmexplorer/blockscout/-/blockscout-0.0.12.tgz#30e19d81ec09f2cbf14b51dcc4927a63343610c2"
-  integrity sha512-gvitKcZWyC7RVEzsG7Oj9d/GC+QKTuqtS3puEqHTvjqe84KVTrli1ckVgRIPYriXSfTyp1WTy1ZAt5hiSrui1A==
+"@evmexplorer/blockscout@0.0.21":
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/@evmexplorer/blockscout/-/blockscout-0.0.21.tgz#402dd27439bf54ab5b2831242b59f8ce8c74114f"
+  integrity sha512-pgKTStZMyeSqLSnF9gdtrWbXx1skELybLAw9MLICc7Z8n5sCvIzJKln55AJEZ1oX/VkQA7FnG5IBQk7Lht+dcg==
 
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
