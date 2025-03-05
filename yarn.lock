@@ -1048,9 +1048,9 @@
     base64-sol "1.0.1"
 
 "@uniswap/v3-sdk@^3.18.1":
-  version "3.24.1"
-  resolved "https://registry.yarnpkg.com/@uniswap/v3-sdk/-/v3-sdk-3.24.1.tgz#95d85876c8e5891a8f9c9c0f222b0f27e8785075"
-  integrity sha512-tCEOi1wpbMTvnQJWE6FzSnwznzqWBgC23UH6OzZl2qM59goMe99uLe3RYSD7c/HWduTJzKCZy2Zfi5vFg60Csw==
+  version "3.25.0"
+  resolved "https://registry.yarnpkg.com/@uniswap/v3-sdk/-/v3-sdk-3.25.0.tgz#46ab7207a3b34581587e5ac6158f0169cbc39b5e"
+  integrity sha512-ryKhZ8PEtbv77gYx6nJSTumUAGaBrnsZuA0X/+pKGixJP/laIzceKQmJwubW8VQPlGpaoRESZtfAdTUZSsbgxA==
   dependencies:
     "@ethersproject/abi" "^5.5.0"
     "@ethersproject/solidity" "^5.0.9"
