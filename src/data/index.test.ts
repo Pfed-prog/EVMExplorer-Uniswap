@@ -35,7 +35,7 @@ test('Get Quote on Mainnet', async () => {
 test('Get Viem Quote on Mainnet', async () => {
   const publicClient: PublicClient = createPublicClient({
     chain: mainnet,
-    transport: http(),
+    transport: http(`https://rpc.flashbots.net/fast`),
   });
 
   const tokenData = {
