@@ -1,14 +1,30 @@
 import type { PublicClient } from 'viem';
-
 import { test, expect } from 'vitest';
-
-import { getQuoteUniswapUSD, getQuoteUniswapViemUSD } from '.';
+import {
+  getQuoteUniswapUSD,
+  getQuoteUniswapViemUSD,
+  getPoolReservesWETH,
+  getPoolReserves,
+} from '.';
 import { AlchemyProvider } from 'ethers';
 import { createPublicClient, http } from 'viem';
 import { arbitrum, mainnet, optimism, polygon } from 'viem/chains';
-
 import dotenv from 'dotenv';
 dotenv.config();
+
+test('Fetches Pool Reserves', async () => {
+  const api = process.env.API;
+
+  const provider = new AlchemyProvider('mainnet', api);
+
+  const result = await getPoolReserves(
+    '0xf5a7ae8d465b476e306c8ef764a91b8f119144b4',
+    provider,
+  );
+
+  expect(result.token0Name).toBe('Wrapped Ether');
+  expect(result.token1Name).toBe('Zuzu');
+}, 10000);
 
 test('Get Quote on Mainnet', async () => {
   const api = process.env.API;
@@ -30,6 +46,15 @@ test('Get Quote on Mainnet', async () => {
   );
 
   expect(result.fee).toBe('0.3%');
+
+  const reserves = await getPoolReservesWETH(
+    result.address,
+    1,
+    tokenData.address,
+    provider,
+  );
+
+  expect(reserves.reserves).toBeGreaterThan(1000);
 }, 10000);
 
 test('Get Viem Quote on Mainnet', async () => {

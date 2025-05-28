@@ -7,6 +7,7 @@ import { Contract } from 'ethers';
 import { Token, WETH9 } from '@uniswap/sdk-core';
 import { Pool } from '@uniswap/v3-sdk';
 import IUniswapV3PoolABI from '@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json';
+import { erc20Abi } from 'viem';
 
 export type ContractData = {
   address: string;
@@ -47,7 +48,57 @@ export function getPoolAddresses(chainId: number, token: Token): string[] {
     : [];
 }
 
-// Function to fetch slot0 and liquidity for a given pool contract
+export async function getPoolReserves(
+  poolAddress: string,
+  provider: JsonRpcProvider | AlchemyProvider | FallbackProvider,
+) {
+  const contract = new Contract(poolAddress, IUniswapV3PoolABI.abi, provider);
+
+  // Fetch the token addresses of the pool
+  const token0Address = await contract.token0!();
+  const token1Address = await contract.token1!();
+
+  const erc20Token0 = new Contract(token0Address, erc20Abi, provider);
+  const erc20Token1 = new Contract(token1Address, erc20Abi, provider);
+
+  const decimalsToken0 = Number(await erc20Token0.decimals!());
+  const decimalsToken1 = Number(await erc20Token1.decimals!());
+
+  const token0Name = await erc20Token0.name!();
+  const token1Name = await erc20Token1.name!();
+
+  const reserves0 =
+    Number(await erc20Token0.balanceOf!(poolAddress)) / 10 ** decimalsToken0;
+  const reserves1 =
+    Number(await erc20Token1.balanceOf!(poolAddress)) / 10 ** decimalsToken1;
+
+  return {
+    reserves0: reserves0,
+    token0Name: token0Name,
+    reserves1: reserves1,
+    token1Name: token1Name,
+  };
+}
+
+// Function to get the Uniswap pool address using the WETH and Token pair
+export async function getPoolReservesWETH(
+  contract: string,
+  chainId: number,
+  token: string,
+  provider: any,
+) {
+  const WETH = WETH9[chainId];
+  const erc20 = new Contract(token, erc20Abi, provider);
+  const decimals = Number(await erc20.decimals!());
+  const reserves = Number(await erc20.balanceOf!(contract)) / 10 ** decimals;
+
+  const wethContract = new Contract(WETH!.address, erc20Abi, provider);
+  const wethReserves =
+    Number(await wethContract.balanceOf!(contract)) / 10 ** 18;
+
+  return { reserves: reserves, wethReserves: wethReserves };
+}
+
 export async function fetchPoolData(contract: Contract) {
   try {
     const [slot0, liquidity] = await Promise.all([
@@ -245,10 +296,9 @@ export async function getQuoteUniswapViemUSD(
           price: adjustedPrice,
         };
       }
-    } catch (error) {
+    } catch {
       console.error(
         `Error fetching data for pool ${poolAddress} with ${feeTier}:`,
-        error,
       );
       continue; // Ignore any errors with individual pools
     }

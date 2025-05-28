@@ -7,4 +7,5 @@ export {
   fetchPoolData,
   calculateAdjustedPrice,
   getBestPoolData,
+  getPoolReservesWETH,
 } from './data';
