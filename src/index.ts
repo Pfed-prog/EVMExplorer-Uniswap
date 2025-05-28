@@ -3,4 +3,8 @@ export {
   getQuoteUniswapUSD,
   getQuoteUniswapViemUSD,
   convertSlot0,
+  getPoolAddresses,
+  fetchPoolData,
+  calculateAdjustedPrice,
+  getBestPoolData,
 } from './data';
