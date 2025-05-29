@@ -30,7 +30,7 @@
   "author": "Pavel Fedotov",
   "license": "MIT",
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.3",
+    "@arethetypeswrong/cli": "^0.18.1",
     "@changesets/cli": "^2.27.9",
     "@types/node": "^22.7.5",
     "dotenv": "^16.4.7",
