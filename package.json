@@ -1,6 +1,6 @@
 {
   "name": "@evmexplorer/uniswap",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "EVM Explorer Uniswap v3 sdk",
   "main": "dist/index.js",
   "homepage": "https://github.com/Pfed-prog/EVMExplorer-Uniswap",

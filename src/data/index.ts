@@ -249,8 +249,7 @@ export async function getQuoteUniswapViemUSD(
   const poolFees = ['0.01%', '0.05%', '0.3%', '1%']; // Example fee tiers.
 
   let maxLiquidity = 0;
-  let bestPool: { address: string; fee: string; price: number | null } | null =
-    null;
+  let bestPool: { address: string; fee: string; price: number } | null = null;
 
   // Iterate over all available pools
   for (let i = 0; i < poolAddresses.length; i++) {
